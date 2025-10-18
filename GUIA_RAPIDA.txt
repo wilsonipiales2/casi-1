@@ -1,0 +1,148 @@
+╔══════════════════════════════════════════════════════════════╗
+║                                                              ║
+║       MARCIA GUERRON - COACH Y MENTORA DE FINANZAS          ║
+║              GUIA RAPIDA DE INSTALACION                     ║
+║                                                              ║
+╚══════════════════════════════════════════════════════════════╝
+
+📋 PASO 1: INSTALAR NODE.JS
+═══════════════════════════════════════════════════════════════
+
+⚡ OPCION A - Instalación Automática (Recomendada):
+   → Doble clic en: INSTALAR_NODEJS.bat
+   → Espera a que termine
+   → CIERRA la ventana y abre una nueva
+   → Continúa al Paso 2
+
+💻 OPCION B - Instalación Manual:
+   1. Abre: https://nodejs.org/
+   2. Descarga la versión LTS (Long Term Support)
+   3. Ejecuta el instalador
+   4. Acepta todo por defecto
+   5. Reinicia la computadora si lo pide
+   6. Continúa al Paso 2
+
+═══════════════════════════════════════════════════════════════
+🚀 PASO 2: INICIAR EL PROYECTO
+═══════════════════════════════════════════════════════════════
+
+   → Doble clic en: INICIAR_PROYECTO.bat
+   → Espera unos segundos...
+   → El navegador se abrirá automáticamente en:
+     http://localhost:5173
+
+═══════════════════════════════════════════════════════════════
+✨ CARACTERÍSTICAS DEL SITIO
+═══════════════════════════════════════════════════════════════
+
+✓ Diseño Glassmorphism (efecto cristal iPhone)
+✓ Modo Claro/Oscuro (botón arriba a la derecha)
+✓ Colores dorados profesionales
+✓ 100% Responsive (móvil, tablet, PC)
+✓ Animaciones suaves
+✓ Sin errores
+
+═══════════════════════════════════════════════════════════════
+📱 PÁGINAS INCLUIDAS
+═══════════════════════════════════════════════════════════════
+
+1. BIENVENIDOS (/)
+   - Hero section con presentación
+   - Cursos destacados
+   - Llamadas a la acción
+
+2. CURSOS (/cursos)
+   - Sembrando Mentes de Riqueza (€47)
+   - Sanando Heridas de la Infancia (€47)
+   - Integración en Pareja (Próximamente)
+
+3. MI HISTORIA (/mi-historia)
+   - Historia personal
+   - Misión y propósito
+   - Transformación
+
+4. CONTACTO (/contacto)
+   - Formulario de contacto
+   - Redes sociales
+   - WhatsApp directo
+
+═══════════════════════════════════════════════════════════════
+🎨 CAMBIAR ENTRE MODO CLARO/OSCURO
+═══════════════════════════════════════════════════════════════
+
+→ Busca el botón ☀️/🌙 en la esquina superior derecha
+→ Haz clic para cambiar
+→ Se guarda automáticamente tu preferencia
+
+═══════════════════════════════════════════════════════════════
+📞 INFORMACIÓN DE CONTACTO EN EL SITIO
+═══════════════════════════════════════════════════════════════
+
+WhatsApp:  +34 654 28 16 33
+Email:     marciguerron75@gmail.com
+Instagram: @soy_marcia_guerron
+Facebook:  Marcia Iralda Guerrón Caicedo
+Web:       www.marciaguerron.com
+
+═══════════════════════════════════════════════════════════════
+🔧 SOLUCIÓN DE PROBLEMAS
+═══════════════════════════════════════════════════════════════
+
+❌ Error: "node no se reconoce"
+   → Node.js no está instalado o no está en el PATH
+   → Ejecuta: INSTALAR_NODEJS.bat
+   → O instala manualmente desde nodejs.org
+
+❌ Error: "Puerto 5173 ocupado"
+   → Otro servidor está corriendo
+   → Cierra todas las ventanas de terminal
+   → Vuelve a ejecutar: INICIAR_PROYECTO.bat
+
+❌ Error al instalar dependencias
+   → Elimina la carpeta "node_modules"
+   → Ejecuta nuevamente: INICIAR_PROYECTO.bat
+
+❌ Cambios no se ven
+   → Guarda el archivo
+   → El servidor recargará automáticamente
+   → Si no funciona, presiona Ctrl+C y reinicia
+
+═══════════════════════════════════════════════════════════════
+🎯 COMANDOS ÚTILES (En PowerShell o CMD)
+═══════════════════════════════════════════════════════════════
+
+npm run dev       → Iniciar servidor de desarrollo
+npm run build     → Crear versión de producción
+npm run preview   → Ver versión de producción
+
+Ctrl + C          → Detener el servidor
+
+═══════════════════════════════════════════════════════════════
+📚 ARCHIVOS IMPORTANTES
+═══════════════════════════════════════════════════════════════
+
+INICIAR_PROYECTO.bat     → Inicia el servidor
+INSTALAR_NODEJS.bat      → Instala Node.js
+README_MARCIA.md         → Documentación completa
+GUIA_RAPIDA.txt          → Este archivo
+
+src/
+  ├─ AppMarcia.jsx       → Aplicación principal
+  ├─ components/marcia/  → Componentes del sitio
+  ├─ pages/marcia/       → Páginas del sitio
+  └─ styles/             → Estilos CSS
+
+═══════════════════════════════════════════════════════════════
+💡 SOPORTE
+═══════════════════════════════════════════════════════════════
+
+¿Necesitas ayuda?
+
+📧 Email: marciguerron75@gmail.com
+📱 WhatsApp: +34 654 28 16 33
+
+═══════════════════════════════════════════════════════════════
+
+          🌟 Desarrollado con ❤️ para transformar vidas 🌟
+
+═══════════════════════════════════════════════════════════════

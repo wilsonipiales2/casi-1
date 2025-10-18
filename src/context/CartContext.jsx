@@ -302,14 +302,24 @@ export const CartProvider = ({ children }) => {
   
   // Función para procesar el pago CON BACKEND REAL
   const checkout = async (paymentMethod, paymentDetails = {}) => {
+    console.log('🛒 Iniciando checkout...', { paymentMethod, itemsCount: state.items.length });
+    
     if (!user) {
+      console.error('❌ Usuario no autenticado');
       toast.error('Debes iniciar sesión para realizar el pago');
-      return { success: false };
+      return { success: false, error: 'Usuario no autenticado' };
     }
     
     if (state.items.length === 0) {
+      console.error('❌ Carrito vacío');
       toast.error('El carrito está vacío');
-      return { success: false };
+      return { success: false, error: 'Carrito vacío' };
+    }
+    
+    if (state.total <= 0) {
+      console.error('❌ Total inválido');
+      toast.error('El total de la compra es inválido');
+      return { success: false, error: 'Total inválido' };
     }
     
     try {
@@ -353,12 +363,23 @@ export const CartProvider = ({ children }) => {
         completed_at: new Date().toISOString()
       };
       
-      const { data: order, error: orderError } = await dataService.create('orders', orderData);
+      let order = null;
       
-      if (orderError) {
-        console.error('Error al crear orden:', orderError);
-        // En caso de error, simular éxito para permitir continuar
-        console.warn('Simulando creación de orden para desarrollo');
+      try {
+        const result = await dataService.create('orders', orderData);
+        order = result.data;
+        
+        if (result.error) {
+          console.error('Error al crear orden:', result.error);
+          // Continuar para no bloquear el flujo, pero registrar el error
+          console.warn('⚠️ Orden no guardada en BD, pero continuando flujo');
+        } else {
+          console.log('✅ Orden creada exitosamente:', orderId);
+        }
+      } catch (orderError) {
+        console.error('❌ Error crítico al crear orden:', orderError);
+        // No bloquear el flujo en producción
+        console.warn('⚠️ Continuando a pesar del error de orden');
       }
       
       // Crear registros de compra individuales para cada item
@@ -417,16 +438,31 @@ export const CartProvider = ({ children }) => {
         return purchaseData;
       });
       
-      await Promise.all(purchasePromises);
+      const purchaseResults = await Promise.allSettled(purchasePromises);
+      
+      const successfulPurchases = purchaseResults.filter(r => r.status === 'fulfilled').length;
+      const failedPurchases = purchaseResults.filter(r => r.status === 'rejected').length;
+      
+      console.log(`✅ Compras exitosas: ${successfulPurchases}/${state.items.length}`);
+      
+      if (failedPurchases > 0) {
+        console.warn(`⚠️ ${failedPurchases} compras fallaron, pero el pago se procesó`);
+      }
       
       toast.success('¡Compra realizada con éxito!');
+      
+      // Limpiar carrito después de éxito
+      console.log('🧹 Limpiando carrito...');
       clearCart();
+      
+      console.log('✅ Checkout completado exitosamente');
       
       return { 
         success: true, 
         transactionId: orderData.transaction_id,
         orderId: orderId,
-        order: order
+        order: order,
+        purchasedItems: successfulPurchases
       };
     } catch (error) {
       console.error('Error en el checkout:', error);

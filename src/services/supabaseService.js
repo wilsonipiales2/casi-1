@@ -698,7 +698,10 @@ export const authService = {
         error: null
       };
     } catch (error) {
-      console.error('Error al obtener usuario actual:', error);
+      // No mostrar error si solo es que no hay sesión activa
+      if (error.message !== 'Auth session missing!') {
+        console.error('Error al obtener usuario actual:', error);
+      }
       return {
         success: false,
         user: null,

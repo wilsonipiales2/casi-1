@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FaCheckCircle, FaDownload, FaUser, FaCalendarAlt } from 'react-icons/fa';
+import { FaCheckCircle, FaDownload, FaUser, FaCalendarAlt, FaShoppingCart } from 'react-icons/fa';
 
 import { useAuth } from '../context/AuthContext';
 import { dataService } from '../services/supabaseService';
@@ -132,7 +132,15 @@ const ThankYouPage = () => {
                 </button>
               </div>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <Link 
+                  to="/tienda" 
+                  className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 shadow-lg"
+                >
+                  <FaShoppingCart className="mr-2" />
+                  Seguir Comprando
+                </Link>
+                
                 {user ? (
                   <>
                     <Link 
@@ -140,7 +148,7 @@ const ThankYouPage = () => {
                       className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                     >
                       <FaUser className="mr-2" />
-                      Ir a mi Dashboard
+                      Mi Dashboard
                     </Link>
                     
                     <Link 
@@ -148,24 +156,24 @@ const ThankYouPage = () => {
                       className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
                     >
                       <FaCalendarAlt className="mr-2" />
-                      Agendar una Cita
+                      Agendar Cita
                     </Link>
                   </>
                 ) : (
                   <>
                     <Link 
-                      to="/auth/register" 
+                      to="/register" 
                       className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                     >
                       <FaUser className="mr-2" />
-                      Crear una Cuenta
+                      Crear Cuenta
                     </Link>
                     
                     <Link 
                       to="/" 
                       className="inline-flex items-center justify-center px-6 py-3 border border-gray-300 shadow-sm text-base font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                     >
-                      Volver al Inicio
+                      Inicio
                     </Link>
                   </>
                 )}

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { toast } from 'react-hot-toast';
 import { motion } from 'framer-motion';
@@ -12,7 +12,11 @@ import {
 
 const Login = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { login } = useAuth();
+  
+  // Obtener la página desde donde vino el usuario
+  const from = location.state?.from || null;
   
   const [formData, setFormData] = useState({
     email: '',
@@ -70,6 +74,13 @@ const Login = () => {
       
       if (result.success) {
         toast.success('¡Bienvenido de vuelta!');
+        
+        // Si viene desde checkout, redirigir de vuelta
+        if (from) {
+          console.log('✅ Redirigiendo de vuelta a:', from);
+          navigate(from, { replace: true });
+          return;
+        }
         
         // Redirect based on user role - check multiple formats
         const user = result.data?.user || result.user;

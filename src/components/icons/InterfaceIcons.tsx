@@ -1,15 +1,46 @@
-import React from 'react';
+import React from "react";
 import {
-  FaUser, FaShoppingCart, FaSignOutAlt, FaHome, FaCog, FaSearch, FaMoon, FaSun,
-  FaEdit, FaTrash, FaPlus, FaTimes, FaCheck, FaChevronDown, FaUpload,
-  FaCreditCard, FaPaypal, FaWhatsapp, FaCheckCircle, FaLightbulb, FaQuoteLeft,
-  FaBook, FaUsers, FaDollarSign, FaBars, FaEnvelope, FaPhone,
-  FaGraduationCap, FaGavel, FaBuilding, FaFileAlt, FaShieldAlt, FaInstagram,
-  FaLinkedin, FaTwitter, FaFacebook, FaComments
-} from 'react-icons/fa';
-import {
-  FaGoogle, FaApple
-} from 'react-icons/fa6';
+  FaUser,
+  FaShoppingCart,
+  FaSignOutAlt,
+  FaHome,
+  FaCog,
+  FaSearch,
+  FaMoon,
+  FaSun,
+  FaEdit,
+  FaTrash,
+  FaPlus,
+  FaTimes,
+  FaCheck,
+  FaChevronDown,
+  FaUpload,
+  FaCreditCard,
+  FaPaypal,
+  FaWhatsapp,
+  FaCheckCircle,
+  FaLightbulb,
+  FaQuoteLeft,
+  FaBook,
+  FaUsers,
+  FaDollarSign,
+  FaBars,
+  FaEnvelope,
+  FaPhone,
+  FaGraduationCap,
+  FaGavel,
+  FaBuilding,
+  FaFileAlt,
+  FaShieldAlt,
+  FaInstagram,
+  FaLinkedin,
+  FaTwitter,
+  FaFacebook,
+  FaComments,
+  FaHeart,
+  FaStar,
+} from "react-icons/fa";
+import { FaGoogle, FaApple } from "react-icons/fa6";
 
 // Basic UI Icons
 export const UserIcon = FaUser;
@@ -40,6 +71,9 @@ export const FinancialsIcon = FaDollarSign;
 export const ContactIcon = FaEnvelope;
 export const PhoneIcon = FaPhone;
 export const CommentsIcon = FaComments;
+export const HeartIcon = FaHeart;
+export const SparklesIcon = FaStar;
+export const CashIcon = FaDollarSign;
 
 // Payment Icons
 export const CreditCardIcon = FaCreditCard;
@@ -61,10 +95,12 @@ export const BusinessIcon = FaBuilding;
 export const DocumentIcon = FaFileAlt;
 
 // Custom Logo Icon
-export const NexusProIcon: React.FC<{ className?: string }> = ({ className }) => (
+export const NexusProIcon: React.FC<{ className?: string }> = ({
+  className,
+}) => (
   <svg className={className} viewBox="0 0 40 40" fill="currentColor">
-    <circle cx="20" cy="20" r="18" fill="currentColor" opacity="0.1"/>
-    <path d="M12 8h16l6 12-6 12H12l-6-12z" fill="currentColor"/>
-    <circle cx="20" cy="20" r="4" fill="white"/>
+    <circle cx="20" cy="20" r="18" fill="currentColor" opacity="0.1" />
+    <path d="M12 8h16l6 12-6 12H12l-6-12z" fill="currentColor" />
+    <circle cx="20" cy="20" r="4" fill="white" />
   </svg>
 );

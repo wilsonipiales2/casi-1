@@ -21,6 +21,7 @@ import UserManager from './UserManager';
 import SalesManager from './SalesManager';
 import CSVImporter from './CSVImporter';
 import AIContentGenerator from './AIContentGenerator';
+import AppointmentManager from './AppointmentManager';
 
 const AdminDashboardComplete = () => {
   const { user, logout } = useAuth();
@@ -353,20 +354,7 @@ const AdminDashboardComplete = () => {
             
             {activeTab === 'csv-import' && <CSVImporter />}
             
-            {activeTab === 'appointments' && (
-              <div className="bg-white rounded-lg shadow-lg p-6">
-                <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
-                  <FaCalendarAlt className="mr-3 text-blue-600" />
-                  Gestión de Citas
-                </h3>
-                <div className="bg-blue-50 border-l-4 border-blue-500 p-4 mb-4">
-                  <p className="text-blue-700">
-                    <strong>Próximamente:</strong> Gestión completa de citas y calendario integrado.
-                  </p>
-                </div>
-                <p className="text-gray-600">Por ahora, las citas se gestionan desde la base de datos directamente.</p>
-              </div>
-            )}
+            {activeTab === 'appointments' && <AppointmentManager />}
             
             {activeTab === 'settings' && (
               <div className="bg-white rounded-lg shadow-lg p-6">

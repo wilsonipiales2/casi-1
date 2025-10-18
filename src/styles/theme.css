@@ -1,0 +1,27 @@
+:root {
+  --bg-color: rgba(245,245,245,0.95);
+  --text-color: #0a0a0a;
+  --glass-bg-color: rgba(255,255,255,0.25);
+  --accent-color: rgba(212,175,55,0.95);
+  --card-bg-color: rgba(255, 255, 255, 0.8);
+  --border-color: rgba(212, 175, 55, 0.3);
+  --shadow-color: rgba(212, 175, 55, 0.18);
+}
+
+[data-theme="dark"] {
+  --bg-color: rgba(10,10,10,0.9);
+  --text-color: #fff;
+  --glass-bg-color: rgba(0,0,0,0.45);
+  --accent-color: rgba(212,175,55,0.9);
+  --card-bg-color: rgba(0, 0, 0, 0.6);
+  --border-color: rgba(212, 175, 55, 0.5);
+  --shadow-color: rgba(212, 175, 55, 0.3);
+}
+
+.glass-container {
+  background: var(--glass-bg-color);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border-color);
+  border-radius: 1rem;
+  box-shadow: 0 8px 32px 0 var(--shadow-color);
+}

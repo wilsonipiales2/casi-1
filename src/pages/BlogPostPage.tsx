@@ -1,8 +1,13 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { blogPosts } from '../data/blogData';
-import { format } from 'date-fns';
-import { es } from 'date-fns/locale/es';
+
+// Función para formatear fecha en español sin dependencias
+const formatDate = (dateString: string) => {
+  const date = new Date(dateString);
+  const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+  return date.toLocaleDateString('es-ES', options);
+};
 
 const MarkdownRenderer = ({ content }: { content: string }) => {
     const renderContent = () => {
@@ -49,7 +54,7 @@ const BlogPostPage: React.FC = () => {
                     <p className="text-[var(--accent-color)] font-semibold">{post.category}</p>
                     <h1 className="text-4xl lg:text-5xl font-bold font-serif mt-2">{post.title}</h1>
                      <p className="text-sm text-[var(--muted-foreground)] mt-4">
-                        Publicado el {format(new Date(post.publishDate), 'd LLLL, yyyy', { locale: es })}
+                        Publicado el {formatDate(post.publishDate)}
                     </p>
                 </header>
                 <img src={post.imageUrl} alt={post.title} className="w-full h-96 object-cover rounded-xl shadow-lg mb-8" />

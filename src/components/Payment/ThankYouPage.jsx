@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import {
@@ -15,6 +15,9 @@ import {
 
 const ThankYouPage = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const orderData = location.state || {};
+  const { orderId, amount, billingInfo, paymentMethod, transactionId } = orderData;
 
   useEffect(() => {
     // Celebración con confetti
@@ -85,11 +88,33 @@ const ThankYouPage = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
-            className="text-xl mb-8"
+            className="text-xl mb-4"
             style={{ color: 'var(--text-secondary)' }}
           >
             Gracias por confiar en nuestros servicios legales profesionales
           </motion.p>
+          
+          {orderId && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.45 }}
+              className="mb-8 inline-block px-6 py-3 bg-blue-50 rounded-lg"
+            >
+              <p className="text-sm text-gray-600 mb-1">Número de Orden</p>
+              <p className="text-xl font-bold text-blue-600">{orderId}</p>
+              {amount && (
+                <p className="text-lg font-semibold text-gray-700 mt-2">
+                  Total: ${typeof amount === 'number' ? amount.toFixed(2) : amount}
+                </p>
+              )}
+              {paymentMethod && (
+                <p className="text-sm text-gray-500 mt-1">
+                  Método: {paymentMethod === 'paypal' ? 'PayPal' : paymentMethod}
+                </p>
+              )}
+            </motion.div>
+          )}
 
           {/* Info Cards */}
           <div className="grid md:grid-cols-2 gap-6 mb-8">

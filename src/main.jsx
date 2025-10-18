@@ -2,24 +2,23 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
-import App from './App-ipiales.jsx';
+import AppCompleto from './AppCompleto.jsx';
 import { HelmetProvider } from 'react-helmet-async';
 import './index.css';
 
 // Configuración global
 window.__APP_CONFIG__ = {
-  version: '3.0.0',
+  version: '1.0.0',
   environment: 'production',
   apiUrl: '/api',
   supabaseUrl: 'https://kbybhgxqdefuquybstqk.supabase.co',
   supabaseKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtieWJoZ3hxZGVmdXF1eWJzdHFrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTc1NjAwODMsImV4cCI6MjA3MzEzNjA4M30.s1knFM9QXd8CH8TC0IOtBBBvb-qm2XYl_VlhVb-CqcE',
-  geminiApiKey: 'AIzaSyAUUNTJ275mO4JyHw3S1RseumPB2L1e_tU'
 };
 
 // Función de inicialización simplificada
 function initializeApp() {
   try {
-    console.log('🚀 Iniciando aplicación Abogado Wilson...');
+    console.log('🚀 Iniciando aplicación completa Marcia Guerrón Coach...');
     
     const root = ReactDOM.createRoot(document.getElementById('root'));
     
@@ -27,7 +26,7 @@ function initializeApp() {
       <React.StrictMode>
         <HelmetProvider>
           <BrowserRouter>
-            <App />
+            <AppCompleto />
             <Toaster 
               position="top-right"
               toastOptions={{

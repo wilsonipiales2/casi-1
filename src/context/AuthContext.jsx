@@ -17,34 +17,35 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        // Verificar si hay un token en localStorage
-        const token = localStorage.getItem('authToken');
-        
-        if (!token) {
-          setLoading(false);
-          setAuthReady(true);
-          return;
-        }
-        
-        // Verificar si el token es válido obteniendo datos del usuario
+        // Intentar obtener sesión activa de Supabase
         const { user: currentUser, error } = await supabaseAuthService.getCurrentUser();
         
         if (error) {
-          console.error('Error al verificar autenticación:', error);
-          localStorage.removeItem('authToken');
+          // Solo loguear error si NO es el error normal de sesión missing
+          if (error.message !== 'Auth session missing!') {
+            console.error('Error al verificar autenticación:', error);
+          }
           setUser(null);
         } else if (currentUser) {
+          // Usuario tiene sesión activa
           const { purchases, error: purchasesError } = await purchasesService.getUserPurchases(currentUser.id);
           if (purchasesError) {
             console.error('Error al obtener las compras del usuario:', purchasesError);
           }
           const userWithPurchases = { ...currentUser, purchases };
-          console.log('Usuario autenticado:', userWithPurchases);
+          console.log('✅ Usuario autenticado:', userWithPurchases.email);
           setUser(userWithPurchases);
+          localStorage.setItem('authToken', 'true'); // Marcar como autenticado
+        } else {
+          // No hay sesión activa - esto es normal al iniciar
+          console.log('ℹ️ No hay sesión activa');
+          setUser(null);
+          localStorage.removeItem('authToken');
         }
       } catch (err) {
         console.error('Error al verificar autenticación:', err);
         setError(err.message);
+        setUser(null);
       } finally {
         setLoading(false);
         setAuthReady(true);

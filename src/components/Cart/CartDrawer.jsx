@@ -51,7 +51,7 @@ const CartDrawer = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black bg-opacity-50 z-50"
+              className="fixed inset-0 bg-black bg-opacity-50 z-[9998]"
               onClick={() => setIsCartVisible(false)}
             />
 
@@ -61,7 +61,8 @@ const CartDrawer = () => {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'tween', duration: 0.3 }}
-              className="fixed top-0 right-0 h-full w-full sm:max-w-lg bg-white shadow-xl z-50 overflow-y-auto flex flex-col"
+              className="fixed top-0 right-0 h-full w-full sm:max-w-lg bg-white shadow-xl z-[9999] overflow-y-auto flex flex-col"
+              onClick={(e) => e.stopPropagation()}
             >
               <div className="p-6">
                 {/* Header */}

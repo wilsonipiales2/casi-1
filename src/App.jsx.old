@@ -1,0 +1,118 @@
+import React, { useState, useEffect } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
+import { ThemeProvider } from "./context/ThemeContext";
+import { AuthProvider } from "./context/AuthContext";
+import { CartProvider } from "./context/CartContext";
+import { ModuleProvider } from "./context/ModuleContext";
+import { Toaster } from "react-hot-toast";
+
+// Componentes comunes
+import LoadingSpinner from "./components/Common/LoadingSpinner";
+import Navbar from "./components/Navigation/Navbar";
+import Footer from "./components/Footer/Footer";
+import NotFoundPage from "./components/Common/NotFoundPage";
+
+// Páginas públicas
+import HomePage from "./pages/HomePage";
+import AboutPage from "./pages/AboutPage";
+import Contact from "./pages/ContactPage";
+import BlogPage from "./pages/BlogPage";
+import BlogPostPage from "./pages/BlogPostPage";
+import CoursesPage from "./pages/CoursesPage";
+import CourseDetailPage from "./pages/CourseDetailPage";
+
+// Páginas de autenticación
+import Login from "./components/Auth/Login";
+import Register from "./components/Auth/Register";
+
+// Páginas de cliente
+import ClientDashboard from "./components/Dashboard/ClientDashboard";
+
+function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simular tiempo de carga inicial
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
+
+  return (
+    <AuthProvider>
+      <CartProvider>
+        <ModuleProvider>
+          <ThemeProvider>
+            <HelmetWrapper>
+              <div className="App min-h-screen bg-background-primary text-text-primary">
+                <Navbar />
+                <main className="flex-1">
+                  <Routes>
+                    {/* Rutas públicas */}
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="/about" element={<AboutPage />} />
+                    <Route path="/contact" element={<Contact />} />
+                    <Route path="/blog" element={<BlogPage />} />
+                    <Route path="/blog/:id" element={<BlogPostPage />} />
+                    <Route path="/courses" element={<CoursesPage />} />
+                    <Route path="/courses/:id" element={<CourseDetailPage />} />
+
+                    {/* Rutas de autenticación */}
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/register" element={<Register />} />
+
+                    {/* Rutas de usuario */}
+                    <Route path="/dashboard" element={<ClientDashboard />} />
+
+                    {/* Fallback */}
+                    <Route path="*" element={<NotFoundPage />} />
+                  </Routes>
+                </main>
+
+                {/* Toast notifications */}
+
+                {/* Toast notifications */}
+                <Toaster
+                  position="top-right"
+                  toastOptions={{
+                    duration: 4000,
+                    style: {
+                      background: "#363636",
+                      color: "#fff",
+                    },
+                    success: {
+                      duration: 3000,
+                      iconTheme: {
+                        primary: "#22c55e",
+                        secondary: "#fff",
+                      },
+                    },
+                    error: {
+                      duration: 5000,
+                      iconTheme: {
+                        primary: "#ef4444",
+                        secondary: "#fff",
+                      },
+                    },
+                  }}
+                />
+
+                {/* Floating Cart */}
+                <FullCart />
+                <Footer />
+              </div>
+            </HelmetWrapper>
+          </ThemeProvider>
+        </ModuleProvider>
+      </CartProvider>
+    </AuthProvider>
+  );
+}
+
+export default App;

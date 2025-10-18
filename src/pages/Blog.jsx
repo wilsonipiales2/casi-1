@@ -3,8 +3,13 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import HelmetWrapper from '../components/Common/HelmetWrapper';
 import { blogPosts } from '../data/blogData';
-import { format } from 'date-fns';
-import { es } from 'date-fns/locale/es';
+
+// Función para formatear fecha en español sin dependencias
+const formatDate = (dateString) => {
+  const date = new Date(dateString);
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  return date.toLocaleDateString('es-ES', options);
+};
 
 const Blog = () => {
   const [articles, setArticles] = useState([]);
@@ -17,7 +22,7 @@ const Blog = () => {
         id: post.slug, // Usar slug como ID para la ruta
         title: post.title,
         excerpt: post.excerpt,
-        date: format(new Date(post.publishDate), 'd MMMM, yyyy', { locale: es }),
+        date: formatDate(post.publishDate),
         author: 'Dr. Wilson Ipiales',
         category: post.category,
         imageUrl: post.imageUrl,

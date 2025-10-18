@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -25,6 +25,7 @@ const CheckoutPage = () => {
   
   const [loading, setLoading] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState('paypal');
+  const [hasCheckedCart, setHasCheckedCart] = useState(false);
   
   // Cargar datos del usuario si está autenticado
   useEffect(() => {
@@ -35,16 +36,44 @@ const CheckoutPage = () => {
           const { data, error } = await dataService.getById('profiles', user.id);
           
           if (data && !error) {
+            console.log('✅ Perfil de usuario cargado:', data);
             setBillingInfo({
               name: data.full_name || '',
               email: user.email || '',
               phone: data.phone || '',
-              identificacion: data.identification || '',
+              identificacion: '',
               direccion: data.address || ''
             });
+          } else if (error) {
+            // Si el perfil no existe, crearlo automáticamente
+            console.log('ℹ️ Perfil no existe, creando uno nuevo...');
+            const newProfile = {
+              id: user.id,
+              full_name: user.user_metadata?.full_name || user.email?.split('@')[0] || '',
+              email: user.email || '',
+              phone: '',
+              address: '',
+              role: 'client',
+              created_at: new Date().toISOString()
+            };
+            
+            const { error: createError } = await dataService.create('profiles', newProfile);
+            
+            if (!createError) {
+              console.log('✅ Perfil creado exitosamente');
+              setBillingInfo({
+                name: newProfile.full_name,
+                email: newProfile.email,
+                phone: '',
+                identificacion: '',
+                direccion: ''
+              });
+            } else {
+              console.error('❌ Error al crear perfil:', createError);
+            }
           }
         } catch (error) {
-          console.error('Error al obtener perfil de usuario:', error);
+          console.error('❌ Error al obtener/crear perfil de usuario:', error);
         }
       };
       
@@ -52,13 +81,25 @@ const CheckoutPage = () => {
     }
   }, [user]);
   
-  // Verificar que hay productos en el carrito
+  // Verificar usuario autenticado primero
   useEffect(() => {
+    if (!user) {
+      toast.error('Debes iniciar sesión para realizar una compra');
+      navigate('/login', { state: { from: '/checkout' } });
+    }
+  }, [user, navigate]);
+  
+  // Verificar que hay productos en el carrito (solo una vez)
+  useEffect(() => {
+    if (hasCheckedCart) return;
+    
     if (!cart || cart.length === 0) {
       toast.error('No hay productos en el carrito');
       navigate('/tienda');
+    } else {
+      setHasCheckedCart(true);
     }
-  }, [cart, navigate]);
+  }, [cart, navigate, hasCheckedCart]);
   
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -69,22 +110,29 @@ const CheckoutPage = () => {
   };
   
   const validateForm = () => {
+    console.log('🔍 Validando formulario de checkout...');
+    console.log('📋 Datos actuales:', billingInfo);
+    
     // Validar campos obligatorios
     if (!billingInfo.name.trim()) {
+      console.log('❌ Validación falló: Nombre vacío');
       toast.error('Por favor ingrese su nombre completo');
       return false;
     }
     
     if (!billingInfo.email.trim() || !/^\S+@\S+\.\S+$/.test(billingInfo.email)) {
+      console.log('❌ Validación falló: Email inválido');
       toast.error('Por favor ingrese un correo electrónico válido');
       return false;
     }
     
     if (!billingInfo.phone.trim()) {
+      console.log('❌ Validación falló: Teléfono vacío');
       toast.error('Por favor ingrese su número telefónico');
       return false;
     }
     
+    console.log('✅ Validación de formulario exitosa');
     return true;
   };
   
@@ -322,34 +370,73 @@ const CheckoutPage = () => {
                   </div>
                 </div>
                 
-                {(
+                {user && cart && cart.length > 0 && getCartTotal() > 0 ? (
                   <PayPalButton 
-                    amount={(getCartTotal() * 1.12).toFixed(2)}
+                    amount={useMemo(() => {
+                      const total = getCartTotal();
+                      const withTax = total * 1.12;
+                      const formatted = withTax.toFixed(2);
+                      console.log('💰 Cálculo de monto para PayPal:', formatted);
+                      return formatted;
+                    }, [cart, getCartTotal])}
+                    onBeforeOrder={() => {
+                      if (!validateForm()) {
+                        toast.error('Por favor completa todos los campos de facturación antes de pagar');
+                        return false;
+                      }
+                      return true;
+                    }}
                     onSuccess={async (details) => {
                       console.log('PayPal payment successful:', details);
+                      
+                      // Validar que tenemos la información necesaria
+                      if (!validateForm()) {
+                        toast.error('Por favor completa toda la información de facturación');
+                        return;
+                      }
+                      
                       setLoading(true);
                       
-                      const result = await checkout('paypal', details);
-                      
-                      setLoading(false);
-                      
-                      if (result.success) {
-                        toast.success('¡Compra realizada con éxito!');
-                        navigate('/payment/success', {
-                          state: {
-                            orderId: result.orderId,
-                            amount: getCartTotal() * 1.12,
-                            billingInfo,
-                            paymentMethod: 'paypal'
-                          }
-                        });
+                      try {
+                        const result = await checkout('paypal', details);
+                        
+                        if (result.success) {
+                          toast.success('¡Compra realizada con éxito!');
+                          // Pequeño delay para asegurar que el checkout se completó
+                          setTimeout(() => {
+                            navigate('/payment/success', {
+                              state: {
+                                orderId: result.orderId,
+                                amount: getCartTotal() * 1.12,
+                                billingInfo,
+                                paymentMethod: 'paypal',
+                                transactionId: result.transactionId
+                              },
+                              replace: true
+                            });
+                          }, 500);
+                        } else {
+                          throw new Error(result.error || 'Error procesando la compra');
+                        }
+                      } catch (error) {
+                        console.error('Checkout error:', error);
+                        toast.error('Error al procesar la compra. Por favor intenta nuevamente.');
+                      } finally {
+                        setLoading(false);
                       }
                     }}
                     onError={(err) => {
                       console.error('PayPal payment error:', err);
+                      setLoading(false);
                       toast.error('Ocurrió un error durante el pago con PayPal.');
                     }}
                   />
+                ) : (
+                  <div className="bg-red-50 p-4 rounded-lg border border-red-200 text-center">
+                    <p className="text-red-600 text-sm">
+                      {!user ? 'Debes iniciar sesión para continuar' : 'El carrito está vacío o el monto es inválido'}
+                    </p>
+                  </div>
                 )}
               </div>
             </motion.div>

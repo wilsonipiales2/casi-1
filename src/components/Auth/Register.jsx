@@ -151,16 +151,21 @@ const Register = () => {
   };
   
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-xl shadow-lg">
+    <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8" style={{
+      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+    }}>
+      <div className="max-w-md w-full space-y-6 bg-white p-10 rounded-2xl shadow-2xl">
         <div className="text-center">
-          <h2 className="mt-6 text-3xl font-extrabold text-gray-900">
-            Crear una cuenta
+          <div className="mx-auto h-16 w-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center mb-4">
+            <FaUser className="h-8 w-8 text-white" />
+          </div>
+          <h2 className="text-4xl font-bold text-gray-900 mb-2">
+            Crear cuenta
           </h2>
-          <p className="mt-2 text-sm text-gray-600">
+          <p className="text-sm text-gray-600">
             ¿Ya tienes una cuenta?{' '}
-            <Link to="/login" className="font-medium text-blue-600 hover:text-blue-500">
-              Inicia sesión aquí
+            <Link to="/login" className="font-semibold text-blue-600 hover:text-blue-700 transition-colors">
+              Inicia sesión
             </Link>
           </p>
         </div>
@@ -198,9 +203,9 @@ const Register = () => {
             </div>
           )}
           
-          <div className="rounded-md shadow-sm -space-y-px">
-            <div className="relative mb-4">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+          <div className="space-y-4">
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                 <FaUser className="h-5 w-5 text-gray-400" />
               </div>
               <input
@@ -209,31 +214,33 @@ const Register = () => {
                 type="text"
                 autoComplete="name"
                 required
-                className="appearance-none rounded-md relative block w-full pl-10 pr-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
+                className="appearance-none rounded-lg relative block w-full pl-12 pr-4 py-3.5 border border-gray-300 placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all sm:text-sm"
                 placeholder="Nombre completo"
                 value={formData.fullName}
                 onChange={handleChange}
               />
             </div>
             
-            <div className="relative mb-4">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <FaUser className="h-5 w-5 text-gray-400" />
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                </svg>
               </div>
               <input
                 id="phone"
                 name="phone"
                 type="tel"
                 autoComplete="tel"
-                className="appearance-none rounded-md relative block w-full pl-10 pr-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
+                className="appearance-none rounded-lg relative block w-full pl-12 pr-4 py-3.5 border border-gray-300 placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all sm:text-sm"
                 placeholder="Teléfono (opcional)"
                 value={formData.phone}
                 onChange={handleChange}
               />
             </div>
             
-            <div className="relative mb-4">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                 <FaEnvelope className="h-5 w-5 text-gray-400" />
               </div>
               <input
@@ -242,15 +249,15 @@ const Register = () => {
                 type="email"
                 autoComplete="email"
                 required
-                className="appearance-none rounded-md relative block w-full pl-10 pr-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
+                className="appearance-none rounded-lg relative block w-full pl-12 pr-4 py-3.5 border border-gray-300 placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all sm:text-sm"
                 placeholder="Correo electrónico"
                 value={formData.email}
                 onChange={handleChange}
               />
             </div>
             
-            <div className="relative mb-4">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                 <FaLock className="h-5 w-5 text-gray-400" />
               </div>
               <input
@@ -259,16 +266,16 @@ const Register = () => {
                 type={showPassword ? "text" : "password"}
                 autoComplete="new-password"
                 required
-                className="appearance-none rounded-md relative block w-full pl-10 pr-10 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
+                className="appearance-none rounded-lg relative block w-full pl-12 pr-12 py-3.5 border border-gray-300 placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all sm:text-sm"
                 placeholder="Contraseña"
                 value={formData.password}
                 onChange={handleChange}
               />
-              <div className="absolute inset-y-0 right-0 pr-3 flex items-center">
+              <div className="absolute inset-y-0 right-0 pr-4 flex items-center">
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="text-gray-400 hover:text-gray-500 focus:outline-none"
+                  className="text-gray-400 hover:text-gray-600 focus:outline-none transition-colors"
                 >
                   {showPassword ? (
                     <FaEyeSlash className="h-5 w-5" />
@@ -279,8 +286,8 @@ const Register = () => {
               </div>
             </div>
             
-            <div className="relative mb-4">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                 <FaLock className="h-5 w-5 text-gray-400" />
               </div>
               <input
@@ -289,16 +296,16 @@ const Register = () => {
                 type={showConfirmPassword ? "text" : "password"}
                 autoComplete="new-password"
                 required
-                className="appearance-none rounded-md relative block w-full pl-10 pr-10 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
+                className="appearance-none rounded-lg relative block w-full pl-12 pr-12 py-3.5 border border-gray-300 placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all sm:text-sm"
                 placeholder="Confirmar contraseña"
                 value={formData.confirmPassword}
                 onChange={handleChange}
               />
-              <div className="absolute inset-y-0 right-0 pr-3 flex items-center">
+              <div className="absolute inset-y-0 right-0 pr-4 flex items-center">
                 <button
                   type="button"
                   onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                  className="text-gray-400 hover:text-gray-500 focus:outline-none"
+                  className="text-gray-400 hover:text-gray-600 focus:outline-none transition-colors"
                 >
                   {showConfirmPassword ? (
                     <FaEyeSlash className="h-5 w-5" />
@@ -310,14 +317,16 @@ const Register = () => {
             </div>
             
             <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <FaUser className="h-5 w-5 text-gray-400" />
+              <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14"></path>
+                </svg>
               </div>
               <input
                 id="referralCode"
                 name="referralCode"
                 type="text"
-                className="appearance-none rounded-md relative block w-full pl-10 pr-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
+                className="appearance-none rounded-lg relative block w-full pl-12 pr-4 py-3.5 border border-gray-300 placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all sm:text-sm"
                 placeholder="Código de referido (opcional)"
                 value={formData.referralCode}
                 onChange={handleChange}
@@ -329,9 +338,11 @@ const Register = () => {
             <button
               type="submit"
               disabled={loading}
-              className={`group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white ${
-                loading ? 'bg-blue-400' : 'bg-blue-600 hover:bg-blue-700'
-              } focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-150 ease-in-out`}
+              className={`group relative w-full flex justify-center py-4 px-4 border border-transparent text-base font-semibold rounded-lg text-white ${
+                loading 
+                  ? 'bg-gradient-to-r from-blue-400 to-purple-400 cursor-not-allowed' 
+                  : 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 transform hover:scale-[1.02]'
+              } focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 shadow-lg`}
             >
               {loading ? (
                 <>
@@ -339,10 +350,15 @@ const Register = () => {
                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                   </svg>
-                  Procesando...
+                  Creando cuenta...
                 </>
               ) : (
-                'Registrarse'
+                <>
+                  Crear cuenta
+                  <svg className="ml-2 -mr-1 w-5 h-5 group-hover:translate-x-1 transition-transform" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd"></path>
+                  </svg>
+                </>
               )}
             </button>
           </div>
