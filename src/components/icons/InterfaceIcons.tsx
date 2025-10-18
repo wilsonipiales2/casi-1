@@ -39,6 +39,8 @@ import {
   FaComments,
   FaHeart,
   FaStar,
+  FaBox,
+  FaDownload,
 } from "react-icons/fa";
 import { FaGoogle, FaApple } from "react-icons/fa6";
 
@@ -59,6 +61,8 @@ export const CheckIcon = FaCheck;
 export const ChevronDownIcon = FaChevronDown;
 export const UploadCloudIcon = FaUpload;
 export const MenuIcon = FaBars;
+export const PackageIcon = FaBox;
+export const DownloadIcon = FaDownload;
 
 // Feature Icons
 export const CheckCircleIcon = FaCheckCircle;
@@ -71,6 +75,8 @@ export const FinancialsIcon = FaDollarSign;
 export const ContactIcon = FaEnvelope;
 export const PhoneIcon = FaPhone;
 export const CommentsIcon = FaComments;
+export const ForumIcon = FaComments;
+export const MessageIcon = FaEnvelope;
 export const HeartIcon = FaHeart;
 export const SparklesIcon = FaStar;
 export const CashIcon = FaDollarSign;

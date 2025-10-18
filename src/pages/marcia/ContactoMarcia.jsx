@@ -83,7 +83,7 @@ const ContactoMarcia = () => {
   };
 
   return (
-    <div className="min-h-screen py-12">
+    <div className="min-h-screen pt-20 py-12">
       {/* Hero */}
       <section className="container mx-auto px-4 mb-12">
         <motion.div

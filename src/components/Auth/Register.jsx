@@ -151,20 +151,23 @@ const Register = () => {
   };
   
   return (
-    <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8" style={{
-      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+    <div className="min-h-screen pt-20 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8" style={{
+      background: 'var(--bg-primary)'
     }}>
-      <div className="max-w-md w-full space-y-6 bg-white p-10 rounded-2xl shadow-2xl">
+      <div className="max-w-md w-full space-y-6 glass-card p-10">
         <div className="text-center">
-          <div className="mx-auto h-16 w-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center mb-4">
-            <FaUser className="h-8 w-8 text-white" />
-          </div>
-          <h2 className="text-4xl font-bold text-gray-900 mb-2">
-            Crear cuenta
+          <Link to="/" className="inline-flex items-center space-x-2 mb-4">
+            <div className="w-14 h-14 glass-container flex items-center justify-center">
+              <span className="text-2xl font-bold text-gradient">MG</span>
+            </div>
+          </Link>
+          <h2 className="text-4xl font-bold mb-2 text-gradient">
+            Crear Cuenta
           </h2>
-          <p className="text-sm text-gray-600">
+          <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
             ¿Ya tienes una cuenta?{' '}
-            <Link to="/login" className="font-semibold text-blue-600 hover:text-blue-700 transition-colors">
+            <Link to="/login" className="font-semibold hover:opacity-80 transition-colors" 
+                  style={{ color: 'var(--accent-gold)' }}>
               Inicia sesión
             </Link>
           </p>

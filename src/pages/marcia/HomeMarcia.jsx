@@ -50,8 +50,47 @@ const HomeMarcia = () => {
     }
   ];
 
+  const services = [
+    {
+      title: 'Consultas 1:1',
+      description: 'Sesiones personalizadas de coaching financiero y mentoría',
+      link: '/consultas',
+      icon: FiHeart
+    },
+    {
+      title: 'Servicios Profesionales',
+      description: 'Asesoramiento experto en desarrollo personal y finanzas',
+      link: '/servicios',
+      icon: FiTrendingUp
+    },
+    {
+      title: 'Programa de Afiliados',
+      description: 'Únete a nuestro programa y gana comisiones',
+      link: '/afiliados',
+      icon: FiStar
+    }
+  ];
+
+  const testimonials = [
+    {
+      name: 'Ana Martínez',
+      text: 'Marcia me ayudó a transformar completamente mi relación con el dinero. Ahora vivo en abundancia.',
+      rating: 5
+    },
+    {
+      name: 'Carlos Rodríguez',
+      text: 'Los cursos de Marcia son increíbles. He sanado heridas que no sabía que tenía.',
+      rating: 5
+    },
+    {
+      name: 'Laura Gómez',
+      text: 'Gracias a la mentoría de Marcia, mi vida ha cambiado por completo. ¡Recomendado 100%!',
+      rating: 5
+    }
+  ];
+
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen pt-20">
       {/* Hero Section */}
       <section className="container mx-auto px-4 py-12">
         <motion.div 
@@ -183,7 +222,7 @@ const HomeMarcia = () => {
                 </div>
 
                 <Link 
-                  to={`/cursos/${course.id}`}
+                  to="/cursos"
                   className="glass-button-primary w-full text-center block"
                 >
                   Más Información
@@ -199,6 +238,118 @@ const HomeMarcia = () => {
             <FiArrowRight />
           </Link>
         </div>
+      </section>
+
+      {/* Services Section */}
+      <section className="container mx-auto px-4 py-12">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold mb-4 text-gradient">
+            Servicios Adicionales
+          </h2>
+          <p className="text-xl" style={{ color: 'var(--text-secondary)' }}>
+            Descubre todas las formas en que puedo ayudarte
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {services.map((service, index) => (
+            <motion.div
+              key={service.title}
+              className="glass-card glass-card-hover text-center"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 * index, duration: 0.5 }}
+            >
+              <div className="w-16 h-16 mx-auto mb-4 glass-container flex items-center justify-center">
+                <service.icon size={32} style={{ color: 'var(--accent-gold)' }} />
+              </div>
+              <h3 className="text-xl font-bold mb-3" style={{ color: 'var(--text-primary)' }}>
+                {service.title}
+              </h3>
+              <p className="mb-4" style={{ color: 'var(--text-secondary)' }}>
+                {service.description}
+              </p>
+              <Link to={service.link} className="glass-button inline-flex items-center space-x-2">
+                <span>Conocer Más</span>
+                <FiArrowRight />
+              </Link>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="container mx-auto px-4 py-12" style={{ background: 'var(--gradient-overlay)' }}>
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold mb-4 text-gradient">
+            Lo Que Dicen Mis Clientes
+          </h2>
+          <p className="text-xl" style={{ color: 'var(--text-secondary)' }}>
+            Testimonios reales de personas que han transformado sus vidas
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {testimonials.map((testimonial, index) => (
+            <motion.div
+              key={testimonial.name}
+              className="glass-card"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.1 * index, duration: 0.5 }}
+            >
+              <div className="flex mb-3">
+                {[...Array(testimonial.rating)].map((_, i) => (
+                  <FiStar key={i} style={{ color: 'var(--accent-gold)' }} fill="var(--accent-gold)" />
+                ))}
+              </div>
+              <p className="mb-4 italic" style={{ color: 'var(--text-secondary)' }}>
+                "{testimonial.text}"
+              </p>
+              <p className="font-bold" style={{ color: 'var(--text-primary)' }}>
+                - {testimonial.name}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* Newsletter Section */}
+      <section className="container mx-auto px-4 py-12">
+        <motion.div 
+          className="glass-card text-center max-w-2xl mx-auto"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 0.6 }}
+        >
+          <h2 className="text-3xl font-bold mb-4 text-gradient">
+            📧 Suscríbete al Newsletter
+          </h2>
+          <p className="text-lg mb-6" style={{ color: 'var(--text-secondary)' }}>
+            Recibe consejos exclusivos, recursos gratuitos y ofertas especiales directamente en tu correo
+          </p>
+          <form className="flex flex-col sm:flex-row gap-3">
+            <input
+              type="email"
+              placeholder="Tu correo electrónico"
+              className="glass-input flex-1 px-4 py-3 rounded-lg"
+              style={{ 
+                background: 'var(--glass-bg)',
+                border: '1px solid var(--glass-border)',
+                color: 'var(--text-primary)'
+              }}
+            />
+            <button
+              type="submit"
+              className="glass-button-primary px-8 py-3"
+            >
+              Suscribirme
+            </button>
+          </form>
+          <p className="text-sm mt-3" style={{ color: 'var(--text-tertiary)' }}>
+            No spam. Cancela en cualquier momento.
+          </p>
+        </motion.div>
       </section>
 
       {/* CTA Section */}

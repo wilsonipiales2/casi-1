@@ -50,7 +50,6 @@
 }
 
 /* =============================================
-<<<<<<< HEAD
    BODY Y BASE
    ============================================= */
 
@@ -61,8 +60,6 @@ body {
 }
 
 /* =============================================
-=======
->>>>>>> a71ed2c2ae28e2df60fcd7e9fd3a50adf9acebb0
    COMPONENTES GLASS
    ============================================= */
 
@@ -142,12 +139,9 @@ body {
   -webkit-backdrop-filter: blur(15px);
   border-bottom: 1px solid var(--glass-border);
   box-shadow: 0 4px 16px 0 var(--glass-shadow);
-<<<<<<< HEAD
-=======
   position: sticky;
   top: 0;
   z-index: 1000;
->>>>>>> a71ed2c2ae28e2df60fcd7e9fd3a50adf9acebb0
   transition: all var(--transition-speed) ease;
 }
 

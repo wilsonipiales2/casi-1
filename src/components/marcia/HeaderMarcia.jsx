@@ -20,6 +20,8 @@ const HeaderMarcia = () => {
     { name: 'BIENVENIDOS', path: '/', icon: FiHome },
     { name: 'CURSOS', path: '/cursos', icon: FiBook },
     { name: 'MI HISTORIA', path: '/mi-historia', icon: FiUser },
+    { name: 'BLOG', path: '/blog', icon: FiBook },
+    { name: 'FORO', path: '/foro', icon: FiMail },
     { name: 'CONTACTO', path: '/contacto', icon: FiMail },
   ];
 
@@ -67,6 +69,23 @@ const HeaderMarcia = () => {
 
             {/* Right Side Actions */}
             <div className="flex items-center space-x-3">
+              <Link 
+                to="/login"
+                className="hidden md:block glass-button px-4 py-2 text-sm font-medium"
+                style={{ color: 'var(--text-primary)' }}
+              >
+                Iniciar Sesión
+              </Link>
+              <Link 
+                to="/register"
+                className="hidden md:block glass-button px-4 py-2 text-sm font-medium"
+                style={{ 
+                  background: 'var(--accent-gold)',
+                  color: '#000'
+                }}
+              >
+                Registrarse
+              </Link>
               <ThemeToggle />
               
               {/* Mobile Menu Button */}
@@ -104,11 +123,7 @@ const HeaderMarcia = () => {
                 to={item.path}
                 onClick={() => setIsMobileMenuOpen(false)}
                 className={`glass-nav-item flex items-center space-x-3 px-4 py-3 rounded-lg ${
-<<<<<<< HEAD
-                  isActive(item.path) ? 'gold-accent font-semibold' : ''
-=======
                   isActive(item.path) ? 'gold-accent font-semibold bg-gold/10' : ''
->>>>>>> a71ed2c2ae28e2df60fcd7e9fd3a50adf9acebb0
                 }`}
               >
                 <item.icon size={20} />

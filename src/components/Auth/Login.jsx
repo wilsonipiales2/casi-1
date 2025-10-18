@@ -106,28 +106,28 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8"
-         style={{ backgroundColor: 'var(--bg-secondary)' }}>
+    <div className="min-h-screen pt-20 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8"
+         style={{ background: 'var(--bg-primary)' }}>
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         className="max-w-md w-full space-y-8"
       >
-        <div className="rounded-xl shadow-2xl p-8"
-             style={{ backgroundColor: 'var(--bg-primary)' }}>
+        <div className="glass-card p-8">
           {/* Header */}
           <div className="text-center">
             <Link to="/" className="inline-flex items-center space-x-2 mb-6">
-              <div className="w-14 h-14 bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl flex items-center justify-center shadow-lg">
-                <span className="text-white font-bold text-2xl">WI</span>
+              <div className="w-14 h-14 glass-container flex items-center justify-center">
+                <span className="text-2xl font-bold text-gradient">MG</span>
               </div>
             </Link>
-            <h2 className="text-3xl font-bold mb-2" style={{ color: 'var(--text-primary)' }}>
+            <h2 className="text-3xl font-bold mb-2 text-gradient">
               Iniciar Sesión
             </h2>
             <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
               ¿No tienes una cuenta?{' '}
-              <Link to="/register" className="font-medium text-blue-600 hover:text-blue-500 transition-colors">
+              <Link to="/register" className="font-medium hover:text-gold-accent transition-colors"
+                    style={{ color: 'var(--accent-gold)' }}>
                 Regístrate aquí
               </Link>
             </p>
@@ -154,9 +154,10 @@ const Login = () => {
                     required
                     value={formData.email}
                     onChange={handleChange}
-                    className="appearance-none block w-full pl-10 pr-3 py-3 border rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                    className="glass-input appearance-none block w-full pl-10 pr-3 py-3 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 transition-all"
                     style={{
-                      backgroundColor: 'var(--bg-primary)',
+                      background: 'var(--glass-bg)',
+                      border: '1px solid var(--glass-border)',
                       borderColor: errors.email ? '#ef4444' : 'var(--border-color)',
                       color: 'var(--text-primary)'
                     }}
@@ -219,7 +220,8 @@ const Login = () => {
                   id="remember-me"
                   name="remember-me"
                   type="checkbox"
-                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                  className="h-4 w-4 border-gray-300 rounded"
+                  style={{ accentColor: 'var(--accent-gold)' }}
                 />
                 <label htmlFor="remember-me" className="ml-2 block text-sm"
                        style={{ color: 'var(--text-secondary)' }}>
@@ -227,7 +229,8 @@ const Login = () => {
                 </label>
               </div>
 
-              <Link to="/forgot-password" className="text-sm text-blue-600 hover:text-blue-500 transition-colors">
+              <Link to="/forgot-password" className="text-sm hover:opacity-80 transition-colors"
+                    style={{ color: 'var(--accent-gold)' }}>
                 ¿Olvidaste tu contraseña?
               </Link>
             </div>
@@ -236,7 +239,7 @@ const Login = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="glass-button-primary w-full py-3 px-4 rounded-lg font-medium transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? (
                 <div className="flex items-center">

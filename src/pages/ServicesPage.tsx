@@ -2,7 +2,7 @@ import React from 'react';
 import { 
   ScaleIcon, 
   UserGroupIcon, 
-  CarIcon, 
+  TruckIcon, 
   BuildingOfficeIcon,
   HeartIcon,
   DocumentTextIcon,
@@ -64,7 +64,7 @@ const ServicesPage = () => {
         'Acompañamiento al proceso completo',
         'Resolución rápida y eficiente'
       ],
-      icon: CarIcon,
+      icon: TruckIcon,
       color: 'bg-green-500',
       popular: false
     },

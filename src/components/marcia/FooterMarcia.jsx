@@ -39,9 +39,12 @@ const FooterMarcia = () => {
   ];
 
   const quickLinks = [
-    { name: 'Bienvenidos', path: '/' },
+    { name: 'Inicio', path: '/' },
     { name: 'Cursos', path: '/cursos' },
     { name: 'Mi Historia', path: '/mi-historia' },
+    { name: 'Blog', path: '/blog' },
+    { name: 'Foro', path: '/foro' },
+    { name: 'Afiliados', path: '/afiliados' },
     { name: 'Contacto', path: '/contacto' },
   ];
 
@@ -87,11 +90,7 @@ const FooterMarcia = () => {
                 <li key={link.path}>
                   <Link 
                     to={link.path}
-<<<<<<< HEAD
-                    className="text-sm hover:gold-accent transition-colors"
-=======
                     className="text-sm hover:text-gold-accent transition-colors"
->>>>>>> a71ed2c2ae28e2df60fcd7e9fd3a50adf9acebb0
                     style={{ color: 'var(--text-secondary)' }}
                   >
                     {link.name}
@@ -111,11 +110,7 @@ const FooterMarcia = () => {
                 <li key={link.path}>
                   <Link 
                     to={link.path}
-<<<<<<< HEAD
-                    className="text-sm hover:gold-accent transition-colors"
-=======
                     className="text-sm hover:text-gold-accent transition-colors"
->>>>>>> a71ed2c2ae28e2df60fcd7e9fd3a50adf9acebb0
                     style={{ color: 'var(--text-secondary)' }}
                   >
                     {link.name}

@@ -44,14 +44,8 @@ import ClientDashboard from './components/Dashboard/ClientDashboard';
 import PurchaseHistory from './components/Dashboard/PurchaseHistory';
 import UserProfile from './components/Dashboard/UserProfile';
 
-// Dashboard Admin
-import AdminDashboard from './components/Admin/AdminDashboard';
+// Dashboard Admin (usar solo el completo)
 import AdminDashboardComplete from './components/Admin/AdminDashboardComplete';
-import CourseManager from './components/Admin/CourseManager';
-import ProductManager from './components/Admin/ProductManager';
-import UserManager from './components/Admin/UserManager';
-import BlogManager from './components/Admin/BlogManager';
-import SalesManager from './components/Admin/SalesManager';
 
 // Blog y Contenido
 import BlogPage from './pages/BlogPage';
@@ -134,13 +128,7 @@ function AppCompleto() {
                     <Route path="/dashboard/profile" element={<UserProfile />} />
                     
                     {/* Dashboard Admin */}
-                    <Route path="/admin" element={<AdminDashboardComplete />} />
-                    <Route path="/admin/dashboard" element={<AdminDashboardComplete />} />
-                    <Route path="/admin/courses" element={<CourseManager />} />
-                    <Route path="/admin/products" element={<ProductManager />} />
-                    <Route path="/admin/users" element={<UserManager />} />
-                    <Route path="/admin/blog" element={<BlogManager />} />
-                    <Route path="/admin/sales" element={<SalesManager />} />
+                    <Route path="/admin/*" element={<AdminDashboardComplete />} />
                     
                     {/* Blog */}
                     <Route path="/blog" element={<BlogPage />} />

@@ -24,9 +24,9 @@ let initCallCount = 0;
 // Usar la configuración centralizada
 const envConfig = import.meta.env;
 
-// FORZAR URL DE PRODUCCIÓN - NO USAR VARIABLES ANTIGUAS
-const PRODUCCION_URL = 'https://kbybhgxqdefuquybstqk.supabase.co';
-const PRODUCCION_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtieWJoZ3hxZGVmdXF1eWJzdHFrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTc1NjAwODMsImV4cCI6MjA3MzEzNjA4M30.s1knFM9QXd8CH8TC0IOtBBBvb-qm2XYl_VlhVb-CqcE';
+// FORZAR URL DE PRODUCCIÓN - Marcia Guerrón Coach
+const PRODUCCION_URL = 'https://qwedielivgbjessqjscs.supabase.co';
+const PRODUCCION_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF3ZWRpZWxpdmdiamVzc3Fqc2NzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA3Njg4ODYsImV4cCI6MjA3NjM0NDg4Nn0.VySo9Evi3Cp63n0Ri-85H8OolzsE7dUwZOkfqTER-yo';
 
 // Configuración de Supabase - PRODUCCIÓN FORZADA
 const supabaseUrl = PRODUCCION_URL;

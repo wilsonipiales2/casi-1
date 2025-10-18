@@ -90,7 +90,7 @@ const CursosMarcia = () => {
   ];
 
   return (
-    <div className="min-h-screen py-12">
+    <div className="min-h-screen pt-20 py-12">
       {/* Header */}
       <section className="container mx-auto px-4 mb-12">
         <motion.div
