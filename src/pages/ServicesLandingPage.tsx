@@ -168,7 +168,7 @@ const ServicesLandingPage: React.FC = () => {
   };
 
   const handleViewDetails = (service: any) => {
-    navigate(`/services/${service.slug}`);
+    navigate(`/servicios/${service.id}`);
   };
 
   return (

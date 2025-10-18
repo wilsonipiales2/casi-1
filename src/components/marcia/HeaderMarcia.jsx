@@ -104,7 +104,11 @@ const HeaderMarcia = () => {
                 to={item.path}
                 onClick={() => setIsMobileMenuOpen(false)}
                 className={`glass-nav-item flex items-center space-x-3 px-4 py-3 rounded-lg ${
+<<<<<<< HEAD
                   isActive(item.path) ? 'gold-accent font-semibold' : ''
+=======
+                  isActive(item.path) ? 'gold-accent font-semibold bg-gold/10' : ''
+>>>>>>> a71ed2c2ae28e2df60fcd7e9fd3a50adf9acebb0
                 }`}
               >
                 <item.icon size={20} />

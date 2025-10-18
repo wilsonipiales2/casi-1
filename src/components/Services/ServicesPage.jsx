@@ -202,7 +202,7 @@ const ServicesPage = () => {
             {services.map((service, index) => (
               <motion.div
                 key={service.id}
-                className={`bg-white rounded-xl shadow-xl overflow-hidden border-t-4 border-${service.color}-500 hover:shadow-2xl transition-shadow duration-300`}
+                className="bg-white rounded-xl shadow-xl overflow-hidden border-t-4 border-blue-500 hover:shadow-2xl transition-shadow duration-300"
                 initial="hidden"
                 animate="visible"
                 variants={fadeIn}
@@ -219,8 +219,8 @@ const ServicesPage = () => {
                   <ul className="mt-4 space-y-2">
                     {service.details.map((detail, i) => (
                       <li key={i} className="flex items-start">
-                        <span className={`flex-shrink-0 h-5 w-5 rounded-full bg-${service.color}-100 flex items-center justify-center mr-2`}>
-                          <span className={`h-2 w-2 rounded-full bg-${service.color}-600`}></span>
+                        <span className="flex-shrink-0 h-5 w-5 rounded-full bg-blue-100 flex items-center justify-center mr-2">
+                          <span className="h-2 w-2 rounded-full bg-blue-600"></span>
                         </span>
                         <span className="text-gray-600">{detail}</span>
                       </li>
@@ -241,9 +241,9 @@ const ServicesPage = () => {
                   <div className="mt-6 text-center">
                     <Link 
                       to={service.link}
-                      className={`inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-${service.color}-600 hover:bg-${service.color}-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-${service.color}-500`}
+                      className="inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-lg shadow-md text-base font-semibold text-white bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 transform hover:scale-105"
                     >
-                      Más información
+                      Ver Detalles
                     </Link>
                   </div>
                 </div>

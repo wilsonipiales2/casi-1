@@ -87,7 +87,11 @@ const FooterMarcia = () => {
                 <li key={link.path}>
                   <Link 
                     to={link.path}
+<<<<<<< HEAD
                     className="text-sm hover:gold-accent transition-colors"
+=======
+                    className="text-sm hover:text-gold-accent transition-colors"
+>>>>>>> a71ed2c2ae28e2df60fcd7e9fd3a50adf9acebb0
                     style={{ color: 'var(--text-secondary)' }}
                   >
                     {link.name}
@@ -107,7 +111,11 @@ const FooterMarcia = () => {
                 <li key={link.path}>
                   <Link 
                     to={link.path}
+<<<<<<< HEAD
                     className="text-sm hover:gold-accent transition-colors"
+=======
+                    className="text-sm hover:text-gold-accent transition-colors"
+>>>>>>> a71ed2c2ae28e2df60fcd7e9fd3a50adf9acebb0
                     style={{ color: 'var(--text-secondary)' }}
                   >
                     {link.name}

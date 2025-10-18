@@ -41,14 +41,14 @@ const ProcessSearch = () => {
 
   const fetchRecentSearches = async () => {
     try {
-      // Usar método getAll directamente sin esperar from().select()
-      const response = await dataService.getAll('searches');
-      const { data, error } = response;
-      
-      if (error) throw error;
-      // Ordenar los resultados manualmente si es necesario
-      const sortedData = data ? [...data].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp)).slice(0, 5) : [];
-      setRecentSearches(sortedData || []);
+      // Backend worker no disponible en localhost - usar datos mock
+      setRecentSearches([]);
+      // Si quieres usar Supabase en producción, descomenta esto:
+      // const response = await dataService.getAll('searches');
+      // const { data, error } = response;
+      // if (error) throw error;
+      // const sortedData = data ? [...data].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp)).slice(0, 5) : [];
+      // setRecentSearches(sortedData || []);
     } catch (error) {
       console.error('Error al cargar búsquedas recientes:', error);
       setRecentSearches([]);

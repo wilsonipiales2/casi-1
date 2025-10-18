@@ -1,12 +1,24 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { dataService, authService } from '../services/apiService';
-import { formatDistanceToNow } from 'date-fns';
-import { es } from 'date-fns/locale';
+import { useAuth } from '../context/AuthContext';
+
+// Función para calcular tiempo relativo sin dependencias
+const formatTimeAgo = (dateString) => {
+  const date = new Date(dateString);
+  const now = new Date();
+  const seconds = Math.floor((now - date) / 1000);
+  
+  if (seconds < 60) return 'hace unos segundos';
+  if (seconds < 3600) return `hace ${Math.floor(seconds / 60)} minutos`;
+  if (seconds < 86400) return `hace ${Math.floor(seconds / 3600)} horas`;
+  if (seconds < 2592000) return `hace ${Math.floor(seconds / 86400)} días`;
+  return `hace ${Math.floor(seconds / 2592000)} meses`;
+};
 
 export default function Forum() {
   const navigate = useNavigate();
+  const { user: currentUser } = useAuth(); // Usar contexto de autenticación
   const [topics, setTopics] = useState([]);
   const [loading, setLoading] = useState(true);
   const [categories, setCategories] = useState([
@@ -22,32 +34,16 @@ export default function Forum() {
   const [showNewTopicForm, setShowNewTopicForm] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState('');
-  const [currentUser, setCurrentUser] = useState(null);
 
   // Cargar temas desde Supabase
   useEffect(() => {
     const loadTopics = async () => {
       try {
         setLoading(true);
-        let haveData = false;
         
-        // Verificar si dataService tiene el método fetchData
-        if (dataService && typeof dataService.fetchData === 'function') {
-          try {
-            const { data, success } = await dataService.fetchData('topics');
-            if (success && data && data.length > 0) {
-              setTopics(data);
-              haveData = true;
-            }
-          } catch (serviceError) {
-            console.log('Error al usar dataService:', serviceError);
-          }
-        }
-
-        // Si no tenemos datos, usar datos de ejemplo
-        if (!haveData) {
-          console.log('Usando datos simulados para el foro');
-          setTopics([
+        // Usar datos de ejemplo por ahora
+        console.log('Cargando datos del foro...');
+        setTopics([
             {
               id: 1,
               title: 'Reforma al Código Penal: Implicaciones prácticas',
@@ -99,7 +95,6 @@ export default function Forum() {
               excerpt: 'Información sobre los requisitos actualizados para constituir una compañía limitada.'
             }
           ]);
-        }
       } catch (error) {
         console.error('Error al cargar temas:', error);
         setError('Error al cargar los temas del foro');
@@ -108,13 +103,7 @@ export default function Forum() {
       }
     };
 
-    const checkCurrentUser = async () => {
-      const { user } = await authService.getCurrentUser();
-      setCurrentUser(user);
-    };
-
     loadTopics();
-    checkCurrentUser();
   }, []);
 
   const filteredTopics = selectedCategory === 'Todos'
@@ -362,10 +351,7 @@ export default function Forum() {
                         {topic.views || 0}
                       </td>
                       <td className="px-6 py-4 text-sm text-secondary-500">
-                        {topic.date ? formatDistanceToNow(new Date(topic.date), {
-                          addSuffix: true,
-                          locale: es
-                        }) : 'Desconocido'}
+                        {topic.date ? formatTimeAgo(topic.date) : 'Desconocido'}
                       </td>
                     </motion.tr>
                   ))}
